@@ -83,6 +83,8 @@ async fn main() {
     // Send the request to the Server and get a response via the MPC TLS connection
     let response = request_sender.send_request(request).await.unwrap();
 
+    println!("response: {:?}", response);
+
     println!("Got a response from the server");
 
     assert!(response.status() == StatusCode::OK);
@@ -99,6 +101,7 @@ async fn main() {
 
     // Build proof (with or without redactions)
     let redact = false;
+    println!("123123: {}", redact);
     let proof = if !redact {
         build_proof_without_redactions(prover).await
     } else {

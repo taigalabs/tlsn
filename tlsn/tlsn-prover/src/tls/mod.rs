@@ -141,6 +141,8 @@ impl Prover<state::Setup> {
         let fut = Box::pin({
             #[allow(clippy::let_and_return)]
             let fut = async move {
+                println!("prover task!");
+
                 let ClosedConnection {
                     mut client,
                     sent,
@@ -165,6 +167,9 @@ impl Prover<state::Setup> {
                     .server_public_key()
                     .cloned()
                     .expect("server public key is set");
+
+                println!("server public key: {:?}", server_public_key);
+                println!("handshake_decommitment: {:?}", handshake_decommitment);
 
                 Ok(Prover {
                     config: self.config,
